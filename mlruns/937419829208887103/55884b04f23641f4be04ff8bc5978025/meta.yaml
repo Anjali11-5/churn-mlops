@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/937419829208887103/55884b04f23641f4be04ff8bc5978025/artifacts
+end_time: 1774199640945
+entry_point_name: ''
+experiment_id: '937419829208887103'
+lifecycle_stage: active
+run_id: 55884b04f23641f4be04ff8bc5978025
+run_name: silent-stag-824
+run_uuid: 55884b04f23641f4be04ff8bc5978025
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1774199640789
+status: 3
+tags: []
+user_id: ANJALI

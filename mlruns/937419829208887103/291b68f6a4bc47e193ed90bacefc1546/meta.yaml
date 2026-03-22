@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/937419829208887103/291b68f6a4bc47e193ed90bacefc1546/artifacts
+end_time: 1774193120236
+entry_point_name: ''
+experiment_id: '937419829208887103'
+lifecycle_stage: active
+run_id: 291b68f6a4bc47e193ed90bacefc1546
+run_name: gifted-ant-340
+run_uuid: 291b68f6a4bc47e193ed90bacefc1546
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1774192954092
+status: 3
+tags: []
+user_id: ANJALI

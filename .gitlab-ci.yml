@@ -1,0 +1,88 @@
+stages:
+  - test
+  - preprocess
+  - train
+  - deploy
+  - batch
+  - inference
+
+variables:
+  AWS_DEFAULT_REGION: ap-south-1
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip/
+
+# ─── Stage 1: Unit Tests ─────────────────────────────────────
+test:
+  stage: test
+  image: python:3.10-slim
+  script:
+    - pip install -r requirements.txt
+    - pytest tests/ -v
+  only:
+    - main
+
+# ─── Stage 2: Preprocess ─────────────────────────────────────
+preprocess:
+  stage: preprocess
+  image: python:3.10-slim
+  script:
+    - pip install -r requirements.txt
+    - python src/preprocess.py
+  only:
+    - main
+
+# ─── Stage 3: Train ──────────────────────────────────────────
+train:
+  stage: train
+  image: python:3.10-slim
+  script:
+    - pip install -r requirements.txt
+    - python src/train.py
+  artifacts:
+    paths:
+      - model_uri.txt
+    expire_in: 1 hour
+  only:
+    - main
+
+# ─── Stage 4: Deploy + Evaluate ──────────────────────────────
+deploy:
+  stage: deploy
+  image: python:3.10-slim
+  dependencies:
+    - train
+  script:
+    - pip install -r requirements.txt
+    - python src/evaluate.py
+  artifacts:
+    paths:
+      - evaluation_results.json
+    expire_in: 1 hour
+  only:
+    - main
+
+# ─── Stage 5: Batch Transform ────────────────────────────────
+batch:
+  stage: batch
+  image: python:3.10-slim
+  dependencies:
+    - train
+  script:
+    - pip install -r requirements.txt
+    - python src/batch_transform.py
+  only:
+    - main
+
+# ─── Stage 6: Real-time Inference ────────────────────────────
+inference:
+  stage: inference
+  image: python:3.10-slim
+  script:
+    - pip install -r requirements.txt
+    - python src/realtime_inference.py
+  only:
+    - main
+

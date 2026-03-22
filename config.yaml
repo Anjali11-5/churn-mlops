@@ -1,0 +1,37 @@
+# ─── AWS Settings ───────────────────────────────────────────
+aws:
+  region: ap-south-1
+  bucket_name: "churn-mlops-bucket-anjali-2026"          # fill in after terraform apply
+  role_arn: "arn:aws:iam::788184849278:role/churn-sagemaker-role"                # fill in after terraform apply
+
+# ─── S3 Paths ───────────────────────────────────────────────
+s3:
+  prefix: churn-project
+  train_key: churn-project/data/train.csv
+  test_key: churn-project/data/test.csv
+  model_prefix: churn-project/model
+  batch_input_key: churn-project/batch-input/test.csv
+  batch_output_prefix: churn-project/batch-output/
+
+# ─── SageMaker Settings ─────────────────────────────────────
+sagemaker:
+  instance_type: ml.m5.xlarge
+  endpoint_name: churn-mlops-endpoint
+  endpoint_instance_type: ml.t2.medium
+
+# ─── Model Settings ─────────────────────────────────────────
+model:
+  auc_threshold: 0.75
+  test_size: 0.2
+  random_state: 42
+
+# ─── MLflow Settings ────────────────────────────────────────
+mlflow:
+  tracking_uri: http://127.0.0.1:5000
+  experiment_name: churn-prediction
+
+# ─── Local Paths ────────────────────────────────────────────
+local:
+  raw_data: data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+  train_data: data/train.csv
+  test_data: data/test.csv

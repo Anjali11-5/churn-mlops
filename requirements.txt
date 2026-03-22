@@ -1,0 +1,9 @@
+numpy
+pandas
+boto3
+sagemaker
+mlflow
+scikit-learn
+xgboost
+pyyaml
+pytest
